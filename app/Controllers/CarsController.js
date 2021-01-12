@@ -20,12 +20,23 @@ export default class CarsController {
     this.getCars()
   }
 
-  getCars(){
+  getCars() {
     try {
       carsService.getCars()
     } catch (error) {
       console.error(error)
     }
+  }
+
+  testCar() {
+    carsService.createCar({
+      make: "Idaho",
+      model: "Potato Mobile",
+      year: 2020,
+      price: 99999999,
+      description: "Idaho's state car",
+      imgUrl: "https://i.ytimg.com/vi/ktbE0woDFo4/maxresdefault.jpg",
+    })
   }
 
   createCar() {
@@ -38,11 +49,11 @@ export default class CarsController {
       year: form['year'].value,
       price: form['price'].value,
       description: form['description'].value,
-      imgUrl: form['imgUrl'].value
+      imgUrl: form['imgUrl'].value,
     }
     try {
       carsService.createCar(newCar)
-      
+
     } catch (error) {
       console.error(error)
     }
@@ -64,7 +75,7 @@ export default class CarsController {
     }
   }
 
-  bid(id, price){
+  bid(id, price) {
     try {
       console.log(id, price)
       carsService.bid(id, price)
@@ -73,7 +84,7 @@ export default class CarsController {
     }
   }
 
-  getOne(){
+  getOne() {
     let id = ProxyState.cars[0].id
     carsService.getOne(id)
   }
